@@ -26,6 +26,42 @@ model Customer {
   phone     String   @unique @db.VarChar(191)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  wallet Wallet?
+  comments Comment[]
   @@map("customers")
+}
+
+model Wallet {
+  id Int @id @default(autoincrement())
+  balance Int
+  customer Customer @relation(fields: [customer_id], references: [id])
+  customer_id Int @unique
+  @@map("wallets")
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  customer_id Int 
+  title String @db.VarChar(200)
+  description String? @db.Text
+  customer Customer @relation(fields: [customer_id], references: [id])
+
+  @@map("comments")
+}
+
+model Product {
+  id        String   @id
+  name      String
+  price Int
+  stock Int
+  category String
+
+  @@map("products")
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(100)
+
+  @@map("categories")
 }

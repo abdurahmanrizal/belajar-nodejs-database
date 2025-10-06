@@ -22,24 +22,24 @@ describe("Prisma Client", () => {
   //   expect(dataCreate2.name).toBe("Abdurahman Habibie");
   // })
   it('should be able to delete data with interactive transaction', async () => {
-    const [dataCreate1, dataCreate2] = await prismaClient.$transaction(async () => {
-      const abdurahman = await prismaClient.customer.create({
+    const [dataCreate1, dataCreate2] = await prismaClient.$transaction(async (prisma) => {
+      const abdurahman = await prisma.customer.create({
         data: {
-          name: "Abdurahman Jack",
-          phone: "082221110748",
-          email: "abdurahmanjack@me.com"
+          name: "Abdurahman Jack1",
+          phone: "08222111074811",
+          email: "abdurahmanjack1@me.com"
         }
       })
-      const habibie = await prismaClient.customer.create({
+      const habibie = await prisma.customer.create({
         data: {
-          name: "Abdurahman Habibie",
-          phone: "081225404361",
-          email: "abdurahmanhabibie@me.com"
+          name: "Abdurahman Habibie1",
+          phone: "0812254043611",
+          email: "abdurahmanhabibie1@me.com"
         }
       })
       return [abdurahman, habibie]
     })
-    expect(dataCreate1.name).toBe("Abdurahman Jack");
-    expect(dataCreate2.name).toBe("Abdurahman Habibie");
+    expect(dataCreate1.name).toBe("Abdurahman Jack1");
+    expect(dataCreate2.name).toBe("Abdurahman Habibie1");
   })
 })
