@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// model Sample {
+//   id   Int    @id @default(autoincrement())
+//   name String @db.VarChar(100)
+//   description String? @db.Text()
+//   @@map("sample") // safer lowercase table name on Linux
+// }
+
+// model Customer {
+//   id        Int      @id @default(autoincrement())
+//   name      String
+//   email     String   @unique @db.VarChar(191)
+//   phone     String   @unique @db.VarChar(191)
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt
+//   wallet Wallet?
+//   comments Comment[]
+//   likes Like[]
+//   loves Product[] @relation("loves")
+//   @@map("customers")
+// }
+
+// model Wallet {
+//   id Int @id @default(autoincrement())
+//   balance Int
+//   customer Customer @relation(fields: [customer_id], references: [id])
+//   customer_id Int @unique
+//   @@map("wallets")
+// }
+
+// model Comment {
+//   id Int @id @default(autoincrement())
+//   customer_id Int 
+//   title String @db.VarChar(200)
+//   description String? @db.Text
+//   customer Customer @relation(fields: [customer_id], references: [id])
+
+//   @@map("comments")
+// }
+
+// model Product {
+//   id        String   @id
+//   name      String
+//   price Int
+//   stock Int
+//   category String
+//   likedBy Like[]
+//   lovedBy Customer[] @relation("loves")
+//   @@map("products")
+// }
+
+// model Category {
+//   id Int @id @default(autoincrement())
+//   name String @db.VarChar(100)
+
+//   @@map("categories")
+// }
+// model Like {
+//   customer_id Int
+//   product_id String @db.VarChar(100)
+//   customer Customer @relation(fields: [customer_id], references: [id])
+//   product Product @relation(fields: [product_id], references: [id])
+//   @@id([customer_id, product_id])
+//   @@map("likes")
+// }
